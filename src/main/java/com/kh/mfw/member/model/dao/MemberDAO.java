@@ -78,7 +78,7 @@ public class MemberDAO {
 	}
 
 
-	public String checkId(String memberId) {
+	public int checkId(String memberId) {
 		
 		String sql = """
 						SELECT
@@ -128,8 +128,52 @@ public class MemberDAO {
 			}
 		}
 		
+		return result;
+	}
+
+
+	public int signUp(MemberDTO member) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
 		
+		String sql = """
+					INSERT
+						INTO
+							KH_MEMBER
+					VALUES
+						(
+							  ?
+							, ?
+							, ? 
+							, ?
+							, DEFAULT
+						)
+				""";
 		
+		try {
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@112.221.156.34:12345:XE", "KH02_KKM", "KH1234");
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberPw());
+			pstmt.setString(3, member.getMemberName());
+			pstmt.setString(4, member.getEmail());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null && pstmt.isClosed()) pstmt.close();
+				if (conn != null && conn.isClosed()) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 
 }

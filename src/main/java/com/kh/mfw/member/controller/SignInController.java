@@ -67,7 +67,7 @@ public class SignInController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("selectMember", selectMember);
+		session.setAttribute("loginMember", selectMember);
 		
 		
 //		request.getRequestDispatcher("index.jsp").forward(request, response);

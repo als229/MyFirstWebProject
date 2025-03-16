@@ -32,8 +32,23 @@ public class SignUpController extends HttpServlet {
 		MemberDTO member = new MemberDTO(memberId, memberPw, memberName, email);
 		//=> 원래 객체는 이렇게 생성해야 하는게 이론적으로 맞음. : 객체는 생성과 동시에 유효해야 한다. but 실무에서는 다를 수 있음
 		
+		// 요청처리 => 사용자가 입력한 값들을 저 멀리 있는 DB Server의 KH_MEMBER 테이블에 한 행 INSERT
 		int result = new MemberService().SignUp(member);
 		
+		String path = request.getContextPath();
+		
+		// 성공 했을 경우 => 웰컴페이지로 이동
+		// 실패 했을 경우 => 회원가입페이지로 이동
+		
+		// 중복아이디가 있을 때
+//		if(result != 0){
+//			// 실패 했을 경우 => 회원가입페이지로 이동
+//			// SendRedirect 쓰는 이유 
+//			// 유지보수가 좋아짐
+//			path = "/join";
+//		}
+		
+		response.sendRedirect(result != 0 ? path + "/join" : path);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

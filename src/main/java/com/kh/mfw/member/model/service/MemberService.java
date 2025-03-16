@@ -17,10 +17,15 @@ public class MemberService {
 	public int SignUp(MemberDTO member) {
 		MemberDAO memberDAO = new MemberDAO();
 		
-		memberDAO.checkId(member.getMemberId());
+		int result = memberDAO.checkId(member.getMemberId());
 		
+		if (result > 0) {
+			return result;
+		}else {
+			new MemberDAO().signUp(member);
+		}
 		
-		return 0;
+		return result;
 	}
 	
 }

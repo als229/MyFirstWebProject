@@ -106,7 +106,7 @@
           	=> 대신 정확하지 않을 수 있다(내 생각과 다르게 비교될 수도 있음.)
            -->
           <c:choose>
-	          <c:when test="${ empty selectMember }">
+	          <c:when test="${ empty loginMember }">
 		          <li class="nav-item">
 			          <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#log-in">로그인</a>
 		          </li>

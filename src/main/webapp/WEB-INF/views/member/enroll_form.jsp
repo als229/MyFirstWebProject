@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<td><input type="password" size="17" maxlength="20" id="password"
-						name="nenberPw" class="form-control tooltipstered" 
+						name="memberPw" class="form-control tooltipstered" 
 						maxlength="20" required="required" aria-required="true"
 						style="ime-mode: inactive; margin-bottom: 25px; height: 40px; border: 1px solid #d9d9de"
 						placeholder="영문과 특수문자를 포함한 최소 8자"></td>
